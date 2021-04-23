@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Team7_BLE-Meet</string>
+    <string name="sign_up_1">Sign Up</string>
+    <string name="sign_up_2">SIGN UP</string>
+    <string name="username_1">Username</string>
+    <string name="email_1">Email</string>
+    <string name="password_1">Password</string>
+    <string name="confirm_password_1">Confirm Password</string>
+    <string name="login_1">Login</string>
+    <string name="log_in_1">Log In</string>
+    <string name="log_in_2">LOG IN</string>
+    <string name="username_or_email_1">Username or Email</string>
 </resources>
