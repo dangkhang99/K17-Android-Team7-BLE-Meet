@@ -40,58 +40,59 @@ class DataAccount private constructor() {
     }
 
     fun signUp(account: Account, rePassword: String){
-//        Log.d("TAG","username: ${account.usrName}, email: ${account.email}, password: ${account.password}, repassword: $rePassword")
-//        var check = checkFormatUsrName(account.usrName)
-//        if(check.isNotEmpty()){
-//            signUpCallBack.resultSignUp(check)
-//            return
-//        }
-//        for(acc in accountArrayList){
-//            if(account.usrName == acc.usrName){
-//                signUpCallBack.resultSignUp("Username has been used")
-//                return
-//            }
-//            if(account.email == acc.email){
-//                signUpCallBack.resultSignUp("Username has been used")
-//                return
-//            }
-//        }
-//        check = checkFormatEmail(account.email)
-//        if(check.isNotEmpty()){
-//            signUpCallBack.resultSignUp(check)
-//            return
-//        }
-//
-//        check = checkFormatPassword(account.email)
-//        if(check.isNotEmpty()){
-//            signUpCallBack.resultSignUp(check)
-//            return
-//        }
-//        for(acc in accountArrayList){
-//            if(account.usrName == acc.usrName || account.email == acc.email){
-//                signUpCallBack.resultSignUp("Account has been registered!")
-//                return
-//            }
-//        }
-//        if(account.password != rePassword){
-//            signUpCallBack.resultSignUp("Confirm password is not correct")
-//            return
-//        }
+        Log.d("TAG","username: ${account.usrName}, email: ${account.email}, password: ${account.password}, repassword: $rePassword")
+        var check = checkFormatUsrName(account.usrName)
+        if(check.isNotEmpty()){
+            signUpCallBack.resultSignUp(check)
+            return
+        }
+        for(acc in accountArrayList){
+            if(account.usrName == acc.usrName){
+                signUpCallBack.resultSignUp("Username has been used")
+                return
+            }
+            if(account.email == acc.email){
+                signUpCallBack.resultSignUp("Username has been used")
+                return
+            }
+        }
+        check = checkFormatEmail(account.email)
+        if(check.isNotEmpty()){
+            signUpCallBack.resultSignUp(check)
+            return
+        }
+
+        check = checkFormatPassword(account.email)
+        if(check.isNotEmpty()){
+            signUpCallBack.resultSignUp(check)
+            return
+        }
+        for(acc in accountArrayList){
+            if(account.usrName == acc.usrName || account.email == acc.email){
+                signUpCallBack.resultSignUp("Account has been registered!")
+                return
+            }
+        }
+        if(account.password != rePassword){
+            signUpCallBack.resultSignUp("Confirm password is not correct")
+            return
+        }
 
         val temp = Account(account.usrName, account.email, account.password)
         accountArrayList.add(temp)
-        accountArrayList.add(Account("minh","minh@gmail.com","minhbede"))
-        accountArrayList.add(Account("phat","phat@gmail.com","phatbede"))
-        accountArrayList.add(Account("phuc","phuc@gmail.com","phucbede"))
-        accountArrayList.add(Account("khang","khang@gmail.com","khangbede"))
+//        accountArrayList.add(Account("minh","minh@gmail.com","minhbede"))
+//        accountArrayList.add(Account("phat","phat@gmail.com","phatbede"))
+//        accountArrayList.add(Account("phuc","phuc@gmail.com","phucbede"))
+//        accountArrayList.add(Account("khang","khang@gmail.com","khangbede"))
         signUpCallBack.resultSignUp("Sign Up Successfully")
     }
 
     private fun checkFormatUsrName(usrname: String): String{
         if(usrname.isEmpty()) return "Empty Username!"
-        val regex = mapOf(  "Username has less than 6 characters!" to ".{6,}",
-                            "Username has white space!" to "(?=\\S*$)"
-        )
+        for(i in usrname) {
+            if (i.isWhitespace()) return "Username has white space!"
+        }
+        val regex = mapOf(  "Username has less than 6 characters!" to ".{6,}" )
         for((key, value) in regex) {
             Log.d("TAG", Pattern.compile("^$value$").matcher(usrname).matches().toString())
             if(!Pattern.compile("^$value$").matcher(usrname).matches()) {
