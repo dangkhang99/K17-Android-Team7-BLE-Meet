@@ -10,4 +10,5 @@
     <string name="log_in_1">Log In</string>
     <string name="log_in_2">LOG IN</string>
     <string name="username_or_email_1">Username or Email</string>
+    <string name="ble_uuid">00001234–0000–1000-8000-00805F9B34FB</string>
 </resources>
